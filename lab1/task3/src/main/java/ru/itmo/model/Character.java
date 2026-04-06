@@ -57,8 +57,12 @@ public class Character extends SceneObject {
         return currentTunnel.getRightWall().feelTemperature();
     }
 
-    public SmellType smellAir() {
-        return currentTunnel.getAir().getSmellType();
+    public boolean smellAir() {
+        return currentTunnel.getAir().hasDecaySmell();
+    }
+
+    public String describeAirSmell() {
+        return currentTunnel.getAir().getSmellDescription();
     }
 
     public boolean isNervous() {

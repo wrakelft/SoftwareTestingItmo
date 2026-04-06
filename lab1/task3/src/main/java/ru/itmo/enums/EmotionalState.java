@@ -2,5 +2,7 @@ package ru.itmo.enums;
 
 public enum EmotionalState {
     Спокойно,
-    Нервно
+    Нервно,
+    Гнев,
+    Радость
 }

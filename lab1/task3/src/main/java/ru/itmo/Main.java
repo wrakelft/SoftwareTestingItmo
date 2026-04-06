@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         Wall leftWall = new Wall("Левая стена", TemperatureLevel.Холод, TileColor.Темная);
         Wall rightWall = new Wall("Правая стена", TemperatureLevel.Холод, TileColor.Темная);
-        Air air = new Air(SmellType.Тления, 8);
+        Air air = new Air(true, 8);
         Tunnel tunnel = new Tunnel("Темный тоннель", leftWall, rightWall, air);
         Flashlight flashlight = new Flashlight("Фонарь Зафода", 10);
 
@@ -34,7 +34,7 @@ public class Main {
         System.out.println("Внешнее состояние: " + zaphod.getDisplayedState());
         System.out.println("Температура левой стены: " + zaphod.touchLeftWall());
         System.out.println("Температура правой стены: " + zaphod.touchRightWall());
-        System.out.println("Запах в воздухе: " + zaphod.smellAir());
+        System.out.println("Запах в воздухе: " + zaphod.describeAirSmell());
         System.out.println("Фонарь включен: " + zaphod.getFlashlight().isOn());
         System.out.println("Заряд фонаря: " + zaphod.getFlashlight().getBatteryLevel());
     }

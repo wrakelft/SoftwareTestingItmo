@@ -1,25 +1,27 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.itmo.enums.SmellType;
+import org.junit.jupiter.api.Timeout;
 import ru.itmo.model.Air;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AirTest {
 
+    @Timeout(1)
     @Test
     @DisplayName("Должен корректно создавать объект Air")
     void shouldCreateAir() {
-        Air air = new Air(SmellType.Тления, 8);
+        Air air = new Air(true, 8);
 
-        assertEquals(SmellType.Тления, air.getSmellType());
+        assertTrue(air.hasDecaySmell());
         assertEquals(8, air.getIntensity());
+        assertEquals("тление", air.getSmellDescription());
     }
 
     @Test
     @DisplayName("Должен определять запах тления")
     void shouldDetectDecaySmell() {
-        Air air = new Air(SmellType.Тления, 5);
+        Air air = new Air(true, 5);
 
         assertTrue(air.hasDecaySmell());
     }
@@ -27,14 +29,17 @@ public class AirTest {
     @Test
     @DisplayName("Не должен определять обычный запах как тление")
     void shouldNotDetectDecaySmellForNormalAir() {
-        Air air = new Air(SmellType.Обычный, 3);
+        Air air = new Air(false, 3);
 
         assertFalse(air.hasDecaySmell());
+        assertEquals(3, air.getIntensity());
+        assertEquals("обычный", air.getSmellDescription());
     }
 
     @Test
     @DisplayName("Должен выбрасывать исключение при отрицательной интенсивности")
     void shouldThrowForNegativeIntensity() {
-        assertThrows(IllegalArgumentException.class, () -> new Air(SmellType.Обычный, -1));
+        assertThrows(IllegalArgumentException.class, () -> new Air(true, -1));
+
     }
 }

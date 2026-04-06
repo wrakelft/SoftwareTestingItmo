@@ -4,7 +4,6 @@ import ru.itmo.enums.Direction;
 import ru.itmo.enums.DisplayedState;
 import ru.itmo.enums.EmotionalState;
 import ru.itmo.enums.MovementSpeed;
-import ru.itmo.enums.SmellType;
 import ru.itmo.enums.TemperatureLevel;
 import ru.itmo.enums.TileColor;
 import ru.itmo.model.Air;
@@ -20,7 +19,7 @@ public class CharacterTest {
     private Character createCharacter() {
         Wall leftWall = new Wall("Левая стена", TemperatureLevel.Холод, TileColor.Темная);
         Wall rightWall = new Wall("Правая стена", TemperatureLevel.Холод, TileColor.Черная);
-        Air air = new Air(SmellType.Тления, 8);
+        Air air = new Air(true, 8);
         Tunnel tunnel = new Tunnel("Темный тоннель", leftWall, rightWall, air);
         Flashlight flashlight = new Flashlight("Фонарь", 10);
 
@@ -100,9 +99,9 @@ public class CharacterTest {
     void shouldSmellAir() {
         Character character = createCharacter();
 
-        SmellType smell = character.smellAir();
+        boolean hasDecaySmell = character.smellAir();
 
-        assertEquals(SmellType.Тления, smell);
+        assertTrue(hasDecaySmell);
     }
 
     @Test
@@ -157,7 +156,7 @@ public class CharacterTest {
     void shouldReturnCurrentTunnel() {
         Wall leftWall = new Wall("Левая стена", TemperatureLevel.Холод, TileColor.Темная);
         Wall rightWall = new Wall("Правая стена", TemperatureLevel.Холод, TileColor.Черная);
-        Air air = new Air(SmellType.Тления, 8);
+        Air air = new Air(true, 8);
         Tunnel tunnel = new Tunnel("Темный тоннель", leftWall, rightWall, air);
         Flashlight flashlight = new Flashlight("Фонарь", 10);
 

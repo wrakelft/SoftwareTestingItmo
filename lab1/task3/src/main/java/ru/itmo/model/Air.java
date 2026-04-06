@@ -1,28 +1,27 @@
 package ru.itmo.model;
 
-import ru.itmo.enums.SmellType;
-
 public class Air {
-    private final SmellType smellType;
+    private final boolean decaySmell;
     private final int intensity;
 
-    public Air(SmellType smellType, int intensity) {
+    public Air(boolean decaySmell, int intensity) {
         if (intensity < 0) {
             throw new IllegalArgumentException("интенсивность запаха не может быть отрицательной");
         }
-        this.smellType = smellType;
+        this.decaySmell = decaySmell;
         this.intensity = intensity;
     }
 
-    public SmellType getSmellType() {
-        return smellType;
+    public boolean hasDecaySmell() {
+        return decaySmell;
     }
 
     public int getIntensity() {
         return intensity;
     }
 
-    public boolean hasDecaySmell() {
-        return smellType == SmellType.Тления;
+    public String getSmellDescription() {
+        return decaySmell ? "тление" : "обычный";
     }
+
 }

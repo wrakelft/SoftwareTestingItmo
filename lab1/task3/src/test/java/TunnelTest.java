@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.itmo.enums.SmellType;
 import ru.itmo.enums.TemperatureLevel;
 import ru.itmo.enums.TileColor;
 import ru.itmo.model.Air;
@@ -16,7 +15,7 @@ public class TunnelTest {
     void shouldCreateTunnel() {
         Wall leftWall = new Wall("Левая", TemperatureLevel.Холод, TileColor.Темная);
         Wall rightWall = new Wall("Правая", TemperatureLevel.Холод, TileColor.Черная);
-        Air air = new Air(SmellType.Тления, 7);
+        Air air = new Air(true, 7);
 
         Tunnel tunnel = new Tunnel("Тоннель", leftWall, rightWall, air);
 
@@ -31,7 +30,7 @@ public class TunnelTest {
     void shouldDetectColdWalls() {
         Wall leftWall = new Wall("Левая", TemperatureLevel.Холод, TileColor.Темная);
         Wall rightWall = new Wall("Правая", TemperatureLevel.Тепло, TileColor.Черная);
-        Air air = new Air(SmellType.Обычный, 2);
+        Air air = new Air(false, 2);
 
         Tunnel tunnel = new Tunnel("Тоннель", leftWall, rightWall, air);
 
@@ -43,7 +42,7 @@ public class TunnelTest {
     void shouldDetectColdWallsAnotherSide() {
         Wall leftWall = new Wall("Левая", TemperatureLevel.Тепло, TileColor.Темная);
         Wall rightWall = new Wall("Правая", TemperatureLevel.Холод, TileColor.Черная);
-        Air air = new Air(SmellType.Обычный, 2);
+        Air air = new Air(false, 2);
 
         Tunnel tunnel = new Tunnel("Тоннель", leftWall, rightWall, air);
 
@@ -55,7 +54,7 @@ public class TunnelTest {
     void shouldNotDetectColdWalls() {
         Wall leftWall = new Wall("Левая", TemperatureLevel.Тепло, TileColor.Серая);
         Wall rightWall = new Wall("Правая", TemperatureLevel.Тепло, TileColor.Черная);
-        Air air = new Air(SmellType.Обычный, 1);
+        Air air = new Air(false, 1);
 
         Tunnel tunnel = new Tunnel("Тоннель", leftWall, rightWall, air);
 
@@ -67,7 +66,7 @@ public class TunnelTest {
     void shouldReturnFalseIfWallsAreCold() {
         Wall leftWall = new Wall("Левая", TemperatureLevel.Холод, TileColor.Серая);
         Wall rightWall = new Wall("Правая", TemperatureLevel.Холод, TileColor.Черная);
-        Air air = new Air(SmellType.Обычный, 2);
+        Air air = new Air(false, 2);
 
         Tunnel tunnel = new Tunnel("Тоннель", leftWall, rightWall, air);
 
