@@ -1,0 +1,22 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Gradle
+.gradle/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local env / temp
+*.tmp
+*.swp
+
+# If wrapper jar is present, do NOT ignore it
+!gradle/wrapper/gradle-wrapper.jar
