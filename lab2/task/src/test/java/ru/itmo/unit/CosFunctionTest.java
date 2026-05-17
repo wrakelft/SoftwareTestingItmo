@@ -3,8 +3,7 @@ package ru.itmo.unit;
 import org.junit.jupiter.api.Test;
 import ru.itmo.function.trig.CosFunction;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.itmo.util.MathConstants.EPS;
 import static ru.itmo.util.MathConstants.PI;
 import static ru.itmo.util.MathConstants.TWO_PI;
@@ -66,5 +65,11 @@ class CosFunctionTest {
 
         assertTrue(center < left);
         assertTrue(center < right);
+    }
+
+    @Test
+    void shouldThrowWhenCosEpsIsNotPositive() {
+        assertThrows(IllegalArgumentException.class, () -> new CosFunction(0.0));
+        assertThrows(IllegalArgumentException.class, () -> new CosFunction(-1.0));
     }
 }

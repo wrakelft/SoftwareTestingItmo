@@ -84,4 +84,19 @@ class SystemPartsIntegrationTest {
     void shouldThrowForLogPartAtNegativeArgument() {
         assertThrows(ArithmeticException.class, () -> logPart.apply(-1.0));
     }
+
+    @Test
+    void shouldThrowWhenTanIsZeroBecauseTanDivTanIsUndefined() {
+        double x = -1.0;
+
+        MathFunction sin = value -> -0.8;
+        MathFunction tan = value -> 0.0;
+        MathFunction cot = value -> -0.6;
+        MathFunction sec = value -> 1.8;
+        MathFunction csc = value -> -1.1;
+
+        MathFunction trigPart = new TrigPartFunction(sin, tan, cot, sec, csc);
+
+        assertThrows(ArithmeticException.class, () -> trigPart.apply(x));
+    }
 }

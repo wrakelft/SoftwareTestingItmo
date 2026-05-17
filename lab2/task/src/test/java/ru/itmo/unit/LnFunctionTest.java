@@ -45,4 +45,17 @@ class LnFunctionTest {
 
         assertTrue(right > left);
     }
+
+    @Test
+    void shouldThrowWhenLnEpsIsNotPositive() {
+        assertThrows(IllegalArgumentException.class, () -> new LnFunction(0.0));
+        assertThrows(IllegalArgumentException.class, () -> new LnFunction(-1.0));
+    }
+
+    @Test
+    void shouldThrowWhenLnSeriesDoesNotConverge() {
+        LnFunction ln = new LnFunction(1e-7);
+
+        assertThrows(ArithmeticException.class, () -> ln.apply(1e100));
+    }
 }

@@ -13,7 +13,7 @@ public class LnFunction implements MathFunction {
     }
 
     public LnFunction(double eps) {
-        if (eps < 0) {
+        if (eps <= 0) {
             throw new IllegalArgumentException("eps must be a positive number");
         }
         this.eps = eps;

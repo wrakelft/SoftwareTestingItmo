@@ -13,7 +13,7 @@ public class CosFunction implements MathFunction {
     }
 
     public CosFunction(double eps) {
-        if (eps < 0) {
+        if (eps <= 0) {
             throw new IllegalArgumentException("eps must be positive");
         }
         this.eps = eps;
