@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.12.0'
 }
 
 group = 'ru.itmo'
@@ -11,13 +12,22 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
+    testImplementation 'io.qameta.allure:allure-junit5:2.27.0'
 }
 
 test {
     useJUnitPlatform()
 
+    maxParallelForks = 1
+
+    systemProperty "demo", System.getProperty("demo", "false")
+
     testLogging {
         events "passed", "skipped", "failed"
     }
+}
+
+allure {
+    version = '2.27.0'
 }
